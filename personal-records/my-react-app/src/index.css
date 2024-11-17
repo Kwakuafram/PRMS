@@ -1,0 +1,37 @@
+/* src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* Zoom-in animation for the background */
+@keyframes zoomIn {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1.1);
+    }
+  }
+  
+  /* Slide-in animation for the school name */
+  @keyframes slideIn {
+    0% {
+      transform: translateY(-50px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  /* Apply the animations */
+  .animate-zoomIn {
+    animation: zoomIn 10s infinite alternate;
+  }
+  
+  .animate-slideIn {
+    animation: slideIn 2s ease-out;
+  }
+  

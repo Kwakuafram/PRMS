@@ -6,6 +6,14 @@ use App\Http\Controllers\API\StudentController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\StatisticsController;
 use App\Http\Controllers\API\StaffController;
+use App\Http\Controllers\API\CourseController;
+use App\Http\Controllers\API\OptionController;
+use App\Http\Controllers\API\SubjectController;
+use App\Http\Controllers\API\GradeController;
+use App\Http\Controllers\API\SemesterReportController;
+use App\Http\Controllers\API\TranscriptController;
+
+
 
 
 
@@ -22,8 +30,21 @@ Route::post('/staff', [StaffController::class, 'store']);
 Route::get('/staff/{id}', [StaffController::class, 'show']);
 Route::put('/staff/{id}', [StaffController::class, 'update']);
 Route::delete('/staff/{id}', [StaffController::class, 'destroy']);
+Route::get('/staffCount', [StaffController::class, 'getTotalCount']); // Get the total staff count
+Route::get('/courses', [CourseController::class, 'index']);
+Route::get('/options', [OptionController::class, 'index']);
+Route::get('getstudents', [StudentController::class, 'getstudents']); // Get all students
 
-Route::prefix('students')->group(function () {
+Route::get('/courses', [CourseController::class, 'index']);
+Route::get('/subjects/{course}', [SubjectController::class, 'getByCourse']);
+Route::post('/students', [StudentController::class, 'store']);
+Route::post('/grades', [GradeController::class, 'store']);
+Route::get('/semester-reports/{student}', [SemesterReportController::class, 'show']);
+Route::get('/transcripts/{student}', [TranscriptController::class, 'show']);
+Route::post('/student_24/{id}/upload-image', [StudentController::class, 'uploadImage']);
+
+
+Route::prefix('student_24')->group(function () {
     Route::get('/', [StudentController::class, 'index']); // Get all students
     Route::post('/', [StudentController::class, 'store']); // Create a new student
     Route::get('/{id}', [StudentController::class, 'show']); // Get a specific student by ID

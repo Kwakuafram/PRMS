@@ -4,8 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
-class student extends Model
+
+class student_24 extends Model
 {
     use HasFactory;
 
@@ -20,11 +22,13 @@ class student extends Model
         'status',
         'dob',
         'image',
+        'course_id',
+        'option_id',
     ];
 
    
 
-    protected $table = 'students'; // Ensure this is the correct table name
+    protected $table = 'student_24'; // Ensure this is the correct table name
 
     public function course()
     {
@@ -39,6 +43,11 @@ class student extends Model
     public function semesterReports()
     {
         return $this->hasMany(SemesterReport::class);
+    }
+
+    public function getImageUrlAttribute()
+    {
+        return $this->image ? Storage::url($this->image) : null;
     }
 
 }

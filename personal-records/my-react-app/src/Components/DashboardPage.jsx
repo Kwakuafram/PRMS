@@ -6,6 +6,8 @@ import axios from 'axios';
 const DashboardPage = () => {
   const navigate = useNavigate();
   const [studentCount, setStudentCount] = useState(0);
+  const [staffCount, setStaffCount] = useState(0);
+
 
   const handleLogout = () => {
     localStorage.removeItem('token');
@@ -17,7 +19,7 @@ const DashboardPage = () => {
   // Fetch total student count
   const fetchStudentCount = async () => {
     try {
-      const response = await axios.get('http://192.168.0.3:8000/api/studentCount'); // Replace with your API endpoint
+      const response = await axios.get('http://localhost:8000/api/studentCount'); // Replace with your API endpoint
       setStudentCount(response.data.count); // Assume the API returns { count: <number> }
     } catch (error) {
       console.error('Failed to fetch student count', error);
@@ -28,7 +30,18 @@ const DashboardPage = () => {
   useEffect(() => {
     fetchStudentCount();
   }, []);
-
+  const fetchStaffCount = async () => {
+    try {
+      const response = await axios.get('http://localhost:8000/api/staffCount'); // Replace with your API endpoint
+      setStaffCount(response.data.count); // Assume the API returns { count: <number> }
+    } catch (error) {
+      console.error('Failed to fetch staff count', error);
+      toast.error('Could not load staff data');
+    }
+  };
+  useEffect(() => {
+    fetchStaffCount();
+  }, []);
   return (
     <div className="flex h-screen">
       {/* Sidebar */}
@@ -47,8 +60,8 @@ const DashboardPage = () => {
             <p className="text-3xl font-semibold text-gray-900">{studentCount}</p>
           </div>
           <div className="bg-white p-6 rounded-lg shadow-lg">
-            <h3 className="text-lg font-bold text-gray-700">Total Teachers</h3>
-            <p className="text-3xl font-semibold text-gray-900">35</p>
+            <h3 className="text-lg font-bold text-gray-700">Total Staff</h3>
+            <p className="text-3xl font-semibold text-gray-900">{staffCount}</p>
           </div>
           <div className="bg-white p-6 rounded-lg shadow-lg">
             <h3 className="text-lg font-bold text-gray-700">Upcoming Events</h3>

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\API;
 use App\Models\Staff;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\JsonResponse;
+
 
 
 class StaffController extends Controller
@@ -57,29 +59,8 @@ class StaffController extends Controller
     {
         $staff = Staff::findOrFail($id);
 
-        $validated = $request->validate([
-            'full_name' => 'sometimes|string|max:255',
-            'sex' => 'sometimes|in:male,female',
-            'staff_id' => 'sometimes|string|unique:staff,staff_id,' . $id,
-            'dob' => 'sometimes|date',
-            'first_pay_allowance' => 'nullable|numeric',
-            'social_security' => 'sometimes|string|unique:staff,social_security,' . $id,
-            'ghana_card' => 'sometimes|string|unique:staff,ghana_card,' . $id,
-            'category' => 'sometimes|in:teaching,non_teaching',
-            'rank_grade' => 'sometimes|string',
-            'date_placed_on_rank' => 'nullable|date',
-            'highest_academic_qualification' => 'sometimes|string',
-            'certificates' => 'nullable|array',
-            'date_posted_on_current_station' => 'nullable|date',
-            'responsibility' => 'nullable|string',
-            'salary_grade' => 'nullable|string',
-            'phone_number' => 'sometimes|string|unique:staff,phone_number,' . $id,
-            'email_address' => 'sometimes|email|unique:staff,email_address,' . $id,
-            'teacher_union' => 'nullable|string',
-        ]);
-
-        $staff->update($validated);
-        return response()->json($staff);
+        $staff->update($request->all());
+        return response()->json($staff, 200);
     }
 
     // Delete a staff$staff record
@@ -88,6 +69,12 @@ class StaffController extends Controller
         $staff = Staff::findOrFail($id);
         $staff->delete();
         return response()->json(['message' => 'Staff deleted successfully']);
+    }
+
+    public function getTotalCount(): JsonResponse
+    {
+        $staffCount = Staff::count();
+        return response()->json(['count' => $staffCount]);
     }
 }
 

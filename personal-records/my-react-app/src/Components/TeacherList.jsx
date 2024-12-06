@@ -26,7 +26,7 @@ const StaffList = () => {
         salary_grade: '',
         phone_number: '',
         email_address: '',
-        Staff_union: ''
+        teacher_union: ''
     });
     const [isEditMode, setIsEditMode] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -36,7 +36,7 @@ const StaffList = () => {
     }, []);
 
     const fetchStaffs = () => {
-        axios.get('http://192.168.0.3:8000/api/staff')
+        axios.get('http://localhost:8000/api/staff')
             .then(response => {
                 setStaffs(Array.isArray(response.data) ? response.data : []);
                 toast.success("Staff loaded successfully.");
@@ -57,27 +57,59 @@ const StaffList = () => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
     };
-
     const handleSubmit = (e) => {
         e.preventDefault();
-        const url = isEditMode ? `http://192.168.0.3:8000/api/staff/${selectedStaff.id}` : 'http://192.168.0.3:8000/api/staff';
-        const method = isEditMode ? 'put' : 'post';
+        if (isEditMode) {
+            // Update staff
+            axios.put(`http://localhost:8000/api/staff/${selectedStaff.id}`, formData)
+                .then(() => {
+                    fetchStaffs();
+                    resetForm();
+                    toast.success("Staff updated successfully.");
+                })
+                .catch(error => {
+                    console.error("Error updating Staff:", error);
+                    console.log( error);
 
-        axios[method](url, formData)
-            .then(() => {
-                fetchStaffs();
-                resetForm();
-                toast.success(isEditMode ? "Staff updated successfully." : "Staff added successfully.");
-            })
-            .catch(error => {
-                console.error(isEditMode ? "Error updating Staff:" : "Error adding Staff:", error);
-                toast.error(isEditMode ? "Failed to update Staff." : "Failed to add Staff.");
-            });
+                    toast.error("Failed to update Staff.");
+                });
+        } else {
+            // Add new Staf
+            axios.post('http://localhost:8000/api/staff', formData)
+                .then(() => {
+                    fetchStaffs();
+                    resetForm();
+                    toast.success("Staff added successfully.");
+                })
+                .catch(error => {
+                    console.error("Error adding Staff:", error);
+                    toast.error("Failed to add Staff.");
+                });
+        }
     };
 
-    const handleEdit = (Staff) => {
-        setSelectedStaff(Staff);
-        setFormData({ ...Staff });
+    const handleEdit = (staff) => {
+        setSelectedStaff(staff);
+        setFormData({
+            full_name: staff.full_name,
+            sex: staff.sex,
+            staff_id: staff.staff_id,
+            dob: staff.dob,
+            first_pay_allowance: staff.first_pay_allowance,
+            social_security: staff.social_security,
+            ghana_card: staff.ghana_card,
+            category: staff.category,
+            rank_grade: staff.rank_grade,
+            date_placed_on_rank: staff.date_placed_on_rank,
+            highest_academic_qualification: staff.highest_academic_qualification,
+            certificates: staff.certificates,
+            date_posted_on_current_station: staff.date_posted_on_current_station,
+            responsibility: staff.responsibility,
+            salary_grade: staff.salary_grade,
+            phone_number: staff.phone_number,
+            email_address: staff.email_address,
+            teacher_union: staff.teacher_union
+        });
         setIsEditMode(true);
     };
 
@@ -105,7 +137,7 @@ const StaffList = () => {
             salary_grade: '',
             phone_number: '',
             email_address: '',
-            Staff_union: ''
+            teacher_union: ''
         });
         setIsEditMode(false);
         setSelectedStaff(null);

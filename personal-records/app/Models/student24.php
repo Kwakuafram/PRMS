@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 
 
-class student_24 extends Model
+class student24 extends Model
 {
     use HasFactory;
 
@@ -28,7 +28,7 @@ class student_24 extends Model
 
    
 
-    protected $table = 'student_24'; // Ensure this is the correct table name
+    protected $table = 'student24'; // Ensure this is the correct table name
 
     public function course()
     {
@@ -49,5 +49,11 @@ class student_24 extends Model
     {
         return $this->image ? Storage::url($this->image) : null;
     }
+
+    public function subjects()
+{
+    return $this->belongsToMany(Subject::class);
+}
+
 
 }

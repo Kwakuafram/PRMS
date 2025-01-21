@@ -16,6 +16,7 @@ import GradeEntryPage from './Components/GradeEntryPage.';
 import SemesterReportsPage from './Components/SemesterReportsPage';
 import TranscriptPage from './Components/TranscriptPage';
 import StudentImageUploader from './Components/StudentImageUploader';
+import ProtectedRoute from './Components/RrotectedRoute';
 
 const App = () => {
   return (
@@ -23,18 +24,18 @@ const App = () => {
       <ToastContainer /> {/* Toast notifications container */}
 
       <Routes>
-        <Route path="/dashboard" element={<DashboardLayout />} />
+        <Route path="/dashboard" element={<ProtectedRoute><DashboardLayout /></ProtectedRoute>} />
         <Route path="/" element={<Login />} />
-        <Route path="/studentlist" element={<StudentList />} />
-        <Route path="/teacherlist" element={<StaffList  />} />
+        <Route path="/studentlist" element={<ProtectedRoute><StudentList /></ProtectedRoute>} />
+        <Route path="/teacherlist" element={<ProtectedRoute><StaffList  /></ProtectedRoute>} />
         <Route path="/register" element={<AdminSignup />} />
-        <Route path="/printrecords" element={<PrintRecord />} />
-        <Route path="/courses" element={<CoursesPage />} />
-        <Route path="/enrollment" element={<EnrollmentPage />} />
-        <Route path="/gradeEntry" element={<GradeEntryPage />} />
-        <Route path="/semesterReports" element={<SemesterReportsPage />} />
-        <Route path="/transcripts" element={<TranscriptPage />} />
-        <Route path="/ImageUploader" element={<StudentImageUploader/>} />
+        <Route path="/printrecords" element={<ProtectedRoute><PrintRecord /></ProtectedRoute>} />
+        <Route path="/courses" element={<ProtectedRoute><CoursesPage /></ProtectedRoute>} />
+        <Route path="/enrollment" element={<ProtectedRoute><EnrollmentPage /></ProtectedRoute>} />
+        <Route path="/gradeEntry" element={<ProtectedRoute><GradeEntryPage /></ProtectedRoute>} />
+        <Route path="/semesterReports" element={<ProtectedRoute><SemesterReportsPage /></ProtectedRoute>} />
+        <Route path="/transcripts" element={<ProtectedRoute><TranscriptPage /></ProtectedRoute>} />
+        <Route path="/ImageUploader" element={<ProtectedRoute><StudentImageUploader/></ProtectedRoute>} />
 
 
 

@@ -7,12 +7,21 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Grade extends Model
 {
+    use HasFactory;
+
+    protected $fillable = [
+            'student_id',
+            'subject_id',
+            'grade',
+            'class_score',
+            'exam_score'
+    ];
     public function semesterReport()
     {
         return $this->belongsTo(SemesterReport::class);
     }
 
-    public function student()
+    public function student24()
     {
         return $this->belongsTo(Student::class);
     }
@@ -23,15 +32,4 @@ class Grade extends Model
     }
 }
 
-class SemesterReport extends Model
-{
-    public function student()
-    {
-        return $this->belongsTo(Student::class);
-    }
 
-    public function grades()
-    {
-        return $this->hasMany(Grade::class);
-    }
-}

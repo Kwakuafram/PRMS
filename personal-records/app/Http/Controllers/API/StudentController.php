@@ -6,7 +6,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\student_24;
+use App\Models\student24;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -20,7 +20,7 @@ class StudentController extends Controller
 {
     public function index()
     {
-        $students = student_24::with(['course', 'option'])->get();
+        $students = student24::with(['course', 'option'])->get();
         return response()->json($students);    }
 
     public function store(Request $request)
@@ -33,7 +33,7 @@ class StudentController extends Controller
             $data['image'] = $imagePath;
         }
 
-        $student = student_24::create($data);
+        $student = student24::create($data);
 
         return response()->json(['success' => true, 'data' => $student], 201);
  
@@ -43,13 +43,13 @@ class StudentController extends Controller
 
     public function show($id)
     {
-        return student_24::findOrFail($id);
+        return student24::findOrFail($id);
     }
 
     public function update(Request $request, $id)
     {
         // Fetch the student record by ID
-        $student = student_24::findOrFail($id);
+        $student = student24::findOrFail($id);
     
         // Handle image upload if provided
         if ($request->hasFile('image')) {
@@ -74,14 +74,14 @@ class StudentController extends Controller
     
     public function destroy($id)
     {
-        $student = student_24::findOrFail($id);
+        $student = student24::findOrFail($id);
         $student->delete();
         return response()->json(null, 204);
     }
 
     public function getTotalCount(): JsonResponse
     {
-        $studentCount = student_24::count();
+        $studentCount = student24::count();
         return response()->json(['count' => $studentCount]);
     }
 
@@ -90,17 +90,18 @@ class StudentController extends Controller
     {
         // Fetch students with their related courses and options
        
-        $studentsData = DB::table('student_24')
-        ->join('courses', 'student_24.course_id', '=', 'courses.id') // Join with the courses table using course_id
-        ->join('options', 'student_24.option_id', '=', 'options.id') // Join with the options table using option_id
+        $studentsData = DB::table('student24')
+        ->join('courses', 'student24.course_id', '=', 'courses.id') // Join with the courses table using course_id
+        ->join('options', 'student24.option_id', '=', 'options.id') // Join with the options table using option_id
         ->select(
-            'student_24.name',         // Name from student_24
-            'student_24.contact',      // Contact from student_24
-            'student_24.gender',       // Gender from student_24
-            'student_24.status',       // Status from student_24
-            'student_24.house_number', // House Number from student_24
-            'student_24.dob',          // Date of Birth from student_24
-            'student_24.class',        // Class from student_24
+            // 'student24.id',         // id from student24
+            'student24.name',         // Name from student24
+            'student24.contact',      // Contact from student24
+            'student24.gender',       // Gender from student24
+            'student24.status',       // Status from student24
+            'student24.house_number', // House Number from student24
+            'student24.dob',          // Date of Birth from student24
+            'student24.class',        // Class from student24
             'courses.name as course_name', // Course name from the courses table
             'options.name as option_name' // Option name from the options table
         )
@@ -116,7 +117,7 @@ class StudentController extends Controller
 
     public function uploadImage(Request $request, $id)
     {
-        $student = student_24::findOrFail($id); // Find the student by ID
+        $student = student24::findOrFail($id); // Find the student by ID
 
         if ($request->hasFile('image')) {
             // Store the uploaded image

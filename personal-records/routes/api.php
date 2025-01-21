@@ -39,9 +39,21 @@ Route::get('/courses', [CourseController::class, 'index']);
 Route::get('/subjects/{course}', [SubjectController::class, 'getByCourse']);
 Route::post('/students', [StudentController::class, 'store']);
 Route::post('/grades', [GradeController::class, 'store']);
+Route::get('grade/{id}', [GradeController::class, 'show']);
+
 Route::get('/semester-reports/{student}', [SemesterReportController::class, 'show']);
 Route::get('/transcripts/{student}', [TranscriptController::class, 'show']);
 Route::post('/student_24/{id}/upload-image', [StudentController::class, 'uploadImage']);
+Route::get('getSubjectsByClass', [SubjectController::class, 'getSubjectsByClass']);
+
+Route::get('/getCourse', [CourseController::class, 'getCourse']);
+
+
+Route::get('semester-reports', [SemesterReportController::class, 'index']);
+Route::get('semester-reports/{id}', [SemesterReportController::class, 'show']);
+Route::post('semester-report-store', [SemesterReportController::class, 'store']);
+Route::put('semester-report/{id}', [SemesterReportController::class, 'update']);
+Route::delete('semester-report/{id}', [SemesterReportController::class, 'destroy']);
 
 
 Route::prefix('student_24')->group(function () {

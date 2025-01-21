@@ -6,6 +6,8 @@ const PrintRecord = () => {
     const [records, setRecords] = useState([]);
     const [houseFilter, setHouseFilter] = useState("");
     const [classFilter, setClassFilter] = useState("");
+    const [genderFilter, setGenderFilter] = useState("");
+
 
     const [recordType, setRecordType] = useState("students"); // Default to 'students'
     const [error, setError] = useState(null);
@@ -41,13 +43,16 @@ const PrintRecord = () => {
         setRecords([]); // Reset records when type changes
         setSelectedStaff(null); // Reset staff selection
     };
-
+ 
     const handleHouseFilter = (e) => {
         setHouseFilter(e.target.value);
     };
 
     const handleClassFilter = (e) => {
         setClassFilter(e.target.value);
+    };
+    const handleGenderFilter = (e) => {
+        setGenderFilter(e.target.value);
     };
 
     const handleStaffSelect = (staff) => {
@@ -62,7 +67,9 @@ const PrintRecord = () => {
     const filteredRecords = records.filter(
         (record) =>
             (houseFilter ? record.house_number === houseFilter : true) &&
-            (classFilter ? record.class === classFilter : true)
+            (classFilter ? record.class === classFilter : true) &&
+            (genderFilter ? record.gender === genderFilter : true)
+
     );
     console.log(filteredRecords); // Check the filtered records
 
@@ -80,6 +87,9 @@ const PrintRecord = () => {
         ...new Set(records.map((record) => record.house_number)),
     ];
     const Class = [...new Set(records.map((record) => record.class))];
+
+    const gender = [...new Set(records.map((record) => record.gender))];
+
 
     return (
         <div>
@@ -128,6 +138,23 @@ const PrintRecord = () => {
                         <option key={index} value={className}>
                             {" "}
                             {className}
+                        </option>
+                    ))}
+                </select>
+            </label>
+            {error && <p className="text-red-500">{error}</p>}
+            <label className="block mb-4">
+                <span className="text-gray-700">Select Gender:</span>
+                <select
+                    value={genderFilter}
+                    onChange={handleGenderFilter}
+                    className="w-48 px-3 py-2 border hover:ring-2 hover:ring-blue-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                    <option value="">Filter by Gender</option>
+                    {gender.map((gender, index) => (
+                        <option key={index} value={gender}>
+                            {" "}
+                            {gender}
                         </option>
                     ))}
                 </select>
@@ -268,13 +295,14 @@ const PrintRecord = () => {
                         ))}
                     </tbody>
                 </table>
-                <button
+               
+            </div>
+            <button
                     onClick={handlePrint}
                     className="mt-4 bg-blue-500 text-white px-4 py-2 rounded"
                 >
                     Print
                 </button>
-            </div>
 
             {/* Display staff details form */}
             {recordType === "staff" && selectedStaff && (

@@ -13,8 +13,12 @@ class Subject extends Model
     }
 
     public function option()
-{
-    return $this->belongsTo(Option::class);
-}
-}
+    {
+        return $this->belongsTo(Option::class);
+    }
 
+    public function students()
+    {
+        return $this->belongsToMany(Student::class);
+    }
+}

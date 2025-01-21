@@ -38,17 +38,26 @@ class SubjectsTableSeeder extends Seeder
 
         // Add elective subjects for each course
         $electiveSubjects = [
-            ['name' => 'Agriculture', 'is_core' => false, 'course_id' => 3, 'option_id' => 2], // Option ID 1
-            ['name' => 'Food and Nutrition', 'is_core' => false, 'course_id' => 3, 'option_id' => 2 ], // Option ID 1
-            // ['name' => 'Business Management', 'is_core' => false, 'course_id' => 3, 'option_id' => 1], // Option ID 1
-            // ['name' => 'Economics', 'is_core' => false, 'course_id' => 3, 'option_id' => 1], // Option ID 1
-            // ['name' => 'Government', 'is_core' => false, 'course_id' => 3, 'option_id' => 1], // Option ID 1
-            // ['name' => 'Economics', 'is_core' => false, 'course_id' => 3, 'option_id' => 2], // Option ID 2
-            // ['name' => 'History', 'is_core' => false, 'course_id' => 3, 'option_id' => 2], // Option ID 2
-            // ['name' => 'Geography', 'is_core' => false, 'course_id' => 3, 'option_id' => 2], // Option ID 2
-            ['name' => 'Management in Living', 'is_core' => false, 'course_id' => 3, 'option_id' => 2], // Option ID 3
-            // ['name' => 'Art and Design Foundation', 'is_core' => false, 'course_id' => 3, 'option_id' => 3], // Option ID 3
-            // ['name' => 'Food and Nutrition', 'is_core' => false, 'course_id' => 3, 'option_id' => 3], // Option ID 3
+            ['name' => 'Christian Religious Studies', 'is_core' => false, 'course_id' => 7, 'option_id' => 19], // Option ID 1
+            ['name' => 'Economics', 'is_core' => false, 'course_id' => 7, 'option_id' => 19 ], // Option ID 1
+            ['name' => 'French', 'is_core' => false, 'course_id' => 7, 'option_id' => 19], // Option ID 1
+            ['name' => 'Ghanaian Language', 'is_core' => false, 'course_id' => 7, 'option_id' => 19], // Option ID 1
+            ['name' => 'Literature in English', 'is_core' => false, 'course_id' => 7, 'option_id' => 19], // Option ID 1
+            ['name' => 'Additional Mathematics', 'is_core' => false, 'course_id' => 7, 'option_id' => 20], // Option ID 2
+            ['name' => 'Ghanaian Language', 'is_core' => false, 'course_id' => 7, 'option_id' => 20], // Option ID 2
+            ['name' => 'Geography', 'is_core' => false, 'course_id' => 7, 'option_id' => 20], // Option ID 2
+            ['name' => 'History', 'is_core' => false, 'course_id' => 7, 'option_id' => 20], // Option ID 3
+            ['name' => 'Literature in English', 'is_core' => false, 'course_id' => 7, 'option_id' => 20], // Option ID 3
+            // ['name' => 'Additional Mathematics', 'is_core' => false, 'course_id' => 6, 'option_id' => 17], // Option ID 3
+            // ['name' => 'Ghanaian language', 'is_core' => false, 'course_id' => 6, 'option_id' => 17], // Option ID 3
+            // ['name' => 'Geography', 'is_core' => false, 'course_id' => 6, 'option_id' => 17], // Option ID 3
+            // ['name' => 'Computer Science', 'is_core' => false, 'course_id' => 6, 'option_id' => 17], // Option ID 3
+            // ['name' => 'Music', 'is_core' => false, 'course_id' => 6, 'option_id' => 17], // Option ID 3
+            // ['name' => 'Art and Design Studio', 'is_core' => false, 'course_id' => 6, 'option_id' => 18], // Option ID 3
+            // ['name' => 'French', 'is_core' => false, 'course_id' => 6, 'option_id' => 18], // Option ID 3
+            // ['name' => 'Ghanaian Language', 'is_core' => false, 'course_id' => 6, 'option_id' => 18], // Option ID 3
+            // ['name' => 'History', 'is_core' => false, 'course_id' => 6, 'option_id' => 18], // Option ID 3
+            // ['name' => 'Literature in English', 'is_core' => false, 'course_id' => 6, 'option_id' => 18], // Option ID 3
 
 
           

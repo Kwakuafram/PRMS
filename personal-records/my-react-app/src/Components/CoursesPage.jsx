@@ -9,7 +9,7 @@ const CoursesPage = () => {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/api/courses');
+        const response = await axios.get('http://localhost:8000/api/getCourse');
         console.log('API Response:', response.data); // Debugging
 
         // Check if the response contains valid data
@@ -46,18 +46,18 @@ const CoursesPage = () => {
             <p className="text-gray-600 mt-2">{course.description || 'No description available.'}</p>
 
             {/* Core Subjects */}
-            <div className="mt-4">
+            {/* <div className="mt-4">
               <h3 className="font-medium">Core Subjects:</h3>
               <ul className="list-disc list-inside">
                 {Array.isArray(course.subjects) && course.subjects.length > 0 ? (
-                  course.subjects.map((subject) => (
-                    <li key={subject.id}>{subject.name} (Core)</li>
-                  ))
+                  course.subjects
+                    .filter((subject) => subject.is_core) // Filter core subjects
+                    .map((subject) => <li key={subject.id}>{subject.name}</li>)
                 ) : (
                   <li>No core subjects available for this course.</li>
                 )}
               </ul>
-            </div>
+            </div> */}
 
             {/* Options */}
             <div className="mt-4">

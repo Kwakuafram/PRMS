@@ -10,15 +10,22 @@ class GradeController extends Controller
 {
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'student_id' => 'required|exists:students,id',
-            'semester_report_id' => 'required|exists:semester_reports,id',
-            'subject_id' => 'required|exists:subjects,id',
-            'grade' => 'required|string|max:2',
-        ]);
-
-        $grade = Grade::create($validatedData);
+        $data = $request->all();
+        
+        $grade = Grade::create($data);
 
         return response()->json(['message' => 'Grade recorded successfully!', 'grade' => $grade], 201);
+    }
+
+    public function show($id)
+    {
+    
+        $grades = Grade::with('student24')->where('student_id', $id)->get();
+    
+        if ($grades->isEmpty()) {
+            return response()->json(['message' => 'Grades not found.'], 404);
+        }
+    
+        return response()->json(['data' => $grades]);
     }
 }

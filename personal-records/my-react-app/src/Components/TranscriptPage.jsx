@@ -26,7 +26,7 @@ const TranscriptPage = () => {
     if (selectedStudent) {
       const fetchTranscript = async () => {
         try {
-          const response = await axios.get(`http://localhost:8000/api/transcripts/${selectedStudent.id}`);
+          const response = await axios.get(`http://localhost:8000/api/student_24/${selectedStudent.id}`);
           setTranscript(response.data.data || response.data);
         } catch (error) {
           console.error('Error fetching transcript:', error);

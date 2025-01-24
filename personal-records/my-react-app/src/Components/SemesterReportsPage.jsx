@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import logo from "../assets/ANSEC.JPG";
+
 
 const SemesterReportsPage = () => {
     const [students, setStudents] = useState([]);
@@ -23,6 +25,16 @@ const SemesterReportsPage = () => {
         };
         fetchStudents();
     }, []);
+
+    const handlePrint = () => {
+        const printContents =
+            document.getElementById("print-section").innerHTML;
+        const originalContents = document.body.innerHTML;
+
+        document.body.innerHTML = printContents;
+        window.print();
+        document.body.innerHTML = originalContents;
+    };
 
     // Fetch semester reports for the selected student
     useEffect(() => {
@@ -60,7 +72,7 @@ const SemesterReportsPage = () => {
     }, [selectedStudent]);
 
     return (
-        <div className="p-6">
+        <div  className="p-6">
             <h1 className="text-3xl font-bold mb-6 text-center">
                 Semester Academic Report
             </h1>
@@ -89,11 +101,32 @@ const SemesterReportsPage = () => {
             </div>
 
             {selectedStudent && (
-                <div>
+                <div id="print-section">
                     <div className="bg-white shadow-lg border rounded-lg p-6">
-                        <h2 className="text-2xl font-bold text-center mb-4">
-                            Semester Report
-                        </h2>
+                        <div className="flex items-center justify-between border-b-2 border-black pb-2">
+                            {/* Logo */}
+                            <div className="flex-shrink-0 ml-5">
+                                <img
+                                    src={logo}
+                                    alt="School Logo"
+                                    className="w-20 h-20 object-contain"
+                                />
+                            </div>
+
+                            {/* Text Content */}
+                            <div className="text-center flex-1">
+                                <h2 className="text-2xl font-bold">
+                                    Antoa Senior High
+                                </h2>
+                                <h2 className="text-lg italic">
+                                    Truth ever stands
+                                </h2>
+                                <br></br>
+                                <h2 className="text-xl font-semibold">
+                                    Semester Academic Report
+                                </h2>
+                            </div>
+                        </div>
 
                         <div className="grid grid-cols-2 gap-4 mb-4">
                             <p>
@@ -120,11 +153,8 @@ const SemesterReportsPage = () => {
                                 {reports[0]?.semester || "N/A"}
                             </p>
                         </div>
-
                         {reports.map((report) => (
                             <div key={report.id} className="mb-6">
-                               
-
                                 <table className="w-full border mb-4">
                                     <thead>
                                         <tr className="bg-gray-100">
@@ -175,7 +205,6 @@ const SemesterReportsPage = () => {
                                 </table>
                             </div>
                         ))}
-
                         <p className="grid grid-cols-2 gap-4 mb-4">
                             <p>
                                 <strong>Conduct:</strong>{" "}
@@ -212,7 +241,16 @@ const SemesterReportsPage = () => {
                     </div>
                 </div>
             )}
+
+<button
+                    onClick={handlePrint}
+                    className="mt-4 bg-blue-500 text-white px-4 py-2 rounded"
+                >
+                    Print
+                </button>
         </div>
+        
+        
     );
 };
 

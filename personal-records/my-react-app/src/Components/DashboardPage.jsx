@@ -5,7 +5,6 @@ import axios from 'axios';
 
 const DashboardPage = () => {
   const navigate = useNavigate();
-  const [studentCount, setStudentCount] = useState(0);
   const [staffCount, setStaffCount] = useState(0);
 
 
@@ -15,12 +14,22 @@ const DashboardPage = () => {
     toast.success('Logout successful');
     navigate('/');
   };
+    const [studentCount, setStudentCount] = useState({
+        total_males: 0,
+        total_females: 0,
+        total_male_day: 0,
+        total_female_day: 0,
+        total_male_boarding: 0,
+        total_female_boarding: 0,
+        count: 0,
+        course: 0,
+    });
 
   // Fetch total student count
   const fetchStudentCount = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/api/studentCount'); // Replace with your API endpoint
-      setStudentCount(response.data.count); // Assume the API returns { count: <number> }
+      const response = await axios.get('http://localhost:8000/api/statisticsstudents'); // Replace with your API endpoint
+      setStudentCount(response.data); // Assume the API returns { count: <number> }
     } catch (error) {
       console.error('Failed to fetch student count', error);
       toast.error('Could not load student data');
@@ -54,22 +63,42 @@ const DashboardPage = () => {
         </div>
 
         {/* Key Stats Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <div className="bg-white p-6 rounded-lg shadow-lg">
-            <h3 className="text-lg font-bold text-gray-700">Total Students</h3>
-            <p className="text-3xl font-semibold text-gray-900">{studentCount}</p>
+        <div className="grid grid-cols-1  sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <div className="bg-yellow-100 p-6  rounded-lg shadow-lg">
+            <h3 className="text-lg font-bold  text-gray-700">Total Students</h3>
+            <p className="text-3xl font-semibold text-gray-900">{studentCount.count}</p>
           </div>
           <div className="bg-white p-6 rounded-lg shadow-lg">
             <h3 className="text-lg font-bold text-gray-700">Total Staff</h3>
             <p className="text-3xl font-semibold text-gray-900">{staffCount}</p>
           </div>
-          <div className="bg-white p-6 rounded-lg shadow-lg">
+          <div className="bg-yellow-100 p-6 rounded-lg shadow-lg">
+            <h3 className="text-lg font-bold text-gray-700">Total Males</h3>
+            <p className="text-3xl font-semibold text-gray-900">{studentCount.total_males}</p>
+          </div> <div className="bg-white p-6 rounded-lg shadow-lg">
+            <h3 className="text-lg font-bold text-gray-700">Total Females</h3>
+            <p className="text-3xl font-semibold text-gray-900">{studentCount.total_females}</p>
+          </div> <div className="bg-yellow-100 p-6 rounded-lg shadow-lg">
+            <h3 className="text-lg font-bold text-gray-700">Total Male Day</h3>
+            <p className="text-3xl font-semibold text-gray-900">{studentCount.total_male_day}</p>
+          </div> <div className="bg-white p-6 rounded-lg shadow-lg">
+            <h3 className="text-lg font-bold text-gray-700">Total Female Day</h3>
+            <p className="text-3xl font-semibold text-gray-900">{studentCount.total_female_day}</p>
+          </div> <div className="bg-yellow-100 p-6 rounded-lg shadow-lg">
+            <h3 className="text-lg font-bold text-gray-700">Total Male Boarding</h3>
+            <p className="text-3xl font-semibold text-gray-900">{studentCount.total_male_boarding}</p>
+          </div> <div className="bg-white p-6 rounded-lg shadow-lg">
+            <h3 className="text-lg font-bold text-gray-700">Total Female Boarding</h3>
+            <p className="text-3xl font-semibold text-gray-900">{studentCount.total_female_boarding}</p>
+          </div>
+
+          <div className="bg-yellow-100 p-6 rounded-lg shadow-lg">
             <h3 className="text-lg font-bold text-gray-700">Upcoming Events</h3>
             <p className="text-xl text-gray-900">Parent-Teacher Meeting: Nov 15, 2024</p>
           </div>
           <div className="bg-white p-6 rounded-lg shadow-lg">
             <h3 className="text-lg font-bold text-gray-700">Total Courses</h3>
-            <p className="text-3xl font-semibold text-gray-900">12</p>
+            <p className="text-3xl font-semibold text-gray-900">{studentCount.course}</p>
           </div>
         </div>
 

@@ -169,51 +169,51 @@ const PrintRecord = () => {
 
                             {recordType === "students" && (
                                 <>
-                                    <th className="py-3 px-6 text-left">
+                                    <th className="py-3 px-6 text-center">
                                         Name
                                     </th>
-                                    <th className="py-3 px-6 text-left">
+                                    <th className="py-3 px-6 text-center">
                                         Contact
                                     </th>
-                                    <th className="py-3 px-6 text-left">
+                                    <th className="py-3 px-6 text-center">
                                         Gender
                                     </th>
-                                    <th className="py-3 px-6 text-left">
+                                    <th className="py-3 px-6 text-center">
                                         Status
                                     </th>
-                                    <th className="py-3 px-6 text-left">
+                                    <th className="py-3  px-6 text-center">
                                         House Number
                                     </th>
-                                    <th className="py-3 px-6 text-left">
+                                    <th className="py-3 px-6 text-center">
                                         Date Of Birth
                                     </th>
-                                    <th className="py-3 px-6 text-left">
+                                    <th className="py-3 px-6 text-center">
                                         Class
                                     </th>
                                  
-                                    <th className="py-3 px-6 text-left">
+                                    <th className="py-3 px-6 text-center">
                                         Option
                                     </th>
-                                    <th className="py-3 px-6 text-left">
+                                    <th className="py-3 px-6 text-center">
                                         Image
                                     </th>
                                 </>
                             )}
                             {recordType === "staff" && (
                                 <>
-                                    <th className="py-3 px-6 text-left">
+                                    <th className="py-3 px-6 text-center">
                                         Name
                                     </th>
-                                    <th className="py-3 px-6 text-left">
+                                    <th className="py-3 px-6 text-center">
                                         Contact
                                     </th>
-                                    <th className="py-3 px-6 text-left">
+                                    <th className="py-3 px-6 text-center">
                                         Gender
                                     </th>
-                                    <th className="py-3 px-6 text-left">
+                                    <th className="py-3 px-6 text-center">
                                         Staff ID
                                     </th>
-                                    <th className="py-3 px-6 text-left">
+                                    <th className="py-3 px-6 text-center">
                                         Actions
                                     </th>
                                 </>
@@ -225,34 +225,34 @@ const PrintRecord = () => {
                             <tr key={record.id}>
                                 {recordType === "students" && (
                                     <>
-                                        <td className="px-4 py-2 border">
+                                        <td className="px-4 py-2 text-center border">
                                             {record.name}
                                         </td>
-                                        <td className="px-4 py-2 border">
+                                        <td className="px-4 py-2 text-center border">
                                             {record.contact}
                                         </td>
-                                        <td className="px-4 py-2 border">
+                                        <td className="px-4 py-2 text-center border">
                                             {record.gender}
                                         </td>
-                                        <td className="px-4 py-2 border">
+                                        <td className="px-4 py-2 text-center border">
                                             {record.status}
                                         </td>
-                                        <td className="px-4 py-2 border">
+                                        <td className="px-4 text-center py-2 border">
                                             {record.house_number}
                                         </td>
-                                        <td className="px-4 py-2 border">
+                                        <td className="px-4 py-2 text-center border">
                                             {record.dob}
                                         </td>
-                                        <td className="px-4 py-2 border">
+                                        <td className="px-4 py-2 text-center border">
                                             {record.class}
                                         </td>
                                     
-                                        <td className="px-4 py-2 border">
+                                        <td className="px-4 py-2 text-center border">
                                             {record.option
                                                 ? record.option.option_name
                                                 : "N/A"}
                                         </td>
-                                        <td className="px-4 py-2 border">
+                                        <td className="px-4 py-2 text-center  border">
                                             {record.image ? (
                                                 <img
                                                     src={`http://localhost:8000/storage/${record.image}`}
@@ -267,19 +267,19 @@ const PrintRecord = () => {
                                 )}
                                 {recordType === "staff" && (
                                     <>
-                                        <td className="px-4 py-2 border">
+                                        <td className="px-4 py-2 text-center border">
                                             {record.full_name}
                                         </td>
-                                        <td className="px-4 py-2 border">
+                                        <td className="px-4 py-2 text-center border">
                                             {record.phone_number}
                                         </td>
-                                        <td className="px-4 py-2 border">
+                                        <td className="px-4 py-2 text-center border">
                                             {record.sex}
                                         </td>
-                                        <td className="px-4 py-2 border">
+                                        <td className="px-4 py-2 text-center border">
                                             {record.staff_id}
                                         </td>
-                                        <td className="px-4 py-2 border">
+                                        <td className="px-4 py-2 text-center border">
                                             <button
                                                 onClick={() =>
                                                     handleStaffSelect(record)

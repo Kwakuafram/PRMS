@@ -23,7 +23,7 @@ Route::get('/user', function (Request $request) {
 Route::post('/login', [UserController::class, 'login']);
 Route::post('/register', action: [UserController::class, 'register']);
 Route::middleware('auth:sanctum')->post('/logout', [UserController::class, 'logout']);
-Route::get('/statistics/students', [StatisticsController::class, 'getStudentCount']);
+Route::get('/statisticsstudents', [StatisticsController::class, 'getStudentCount']);
 Route::get('/studentCount', [StudentController::class, 'getTotalCount']); // Get the total student count
 Route::get('/staff', [StaffController::class, 'index']);
 Route::post('/staff', [StaffController::class, 'store']);
@@ -33,7 +33,7 @@ Route::delete('/staff/{id}', [StaffController::class, 'destroy']);
 Route::get('/staffCount', [StaffController::class, 'getTotalCount']); // Get the total staff count
 Route::get('/courses', [CourseController::class, 'index']);
 Route::get('/options', [OptionController::class, 'index']);
-Route::get('getstudents', [StudentController::class, 'getstudents']); // Get all students
+Route::get('/getstudents', [StudentController::class, 'getstudents']); // Get all students
 
 Route::get('/courses', [CourseController::class, 'index']);
 Route::get('/subjects/{course}', [SubjectController::class, 'getByCourse']);

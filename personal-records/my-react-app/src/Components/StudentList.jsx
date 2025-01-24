@@ -391,7 +391,7 @@ const StudentList = () => {
                                 <th className="py-3 px-6 text-left">
                                     Mother's_name
                                 </th>
-                                <th className="py-3 px-6 text-left">Contact</th>
+                                {/* <th className="py-3 px-6 text-left">Contact</th> */}
                                 <th className="py-3 px-6 text-left">Gender</th>
                                 <th className="py-3 px-6 text-left">Status</th>
                                 <th className="py-3 px-6 text-left">
@@ -415,16 +415,16 @@ const StudentList = () => {
                                     <td className="py-4 px-6">
                                         {student.mothers_name}
                                     </td>
-                                    <td className="py-4 px-6">
+                                    {/* <td className="py-4 px-6">
                                         {student.contact}
-                                    </td>
+                                    </td> */}
                                     <td className="py-4 px-6">
                                         {student.gender}
                                     </td>
                                     <td className="py-4 px-6">
                                         {student.status}
                                     </td>
-                                    <td className="py-4 px-6">{student.dob}</td>
+                                    <td className="py-4 px-6">{student.class}</td>
 
                                     <td className="py-4 px-6">
                                         <button
